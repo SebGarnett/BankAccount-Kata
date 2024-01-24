@@ -11,7 +11,8 @@ namespace Kata_Bank_Account.Infrastructure
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseInMemoryDatabase("Kata_Bank_Account"));
+                options.UseSqlServer(configuration.GetConnectionString("DockerDb")));
+                //options.UseInMemoryDatabase("Kata_Bank_Account"));
 
             services.AddScoped<IAppDbContext, AppDbContext>();
         }

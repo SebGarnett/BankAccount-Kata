@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kata_Bank_Account.Application.Common.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Kata_Bank_Account.API.Filters
@@ -11,9 +12,12 @@ namespace Kata_Bank_Account.API.Filters
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 {typeof(Application.Common.Exceptions.ValidationException), HandleValidationException},
-                {typeof(BadHttpRequestException), HandleBadHttpRequestException}
+                {typeof(BadHttpRequestException), HandleBadHttpRequestException},
+                {typeof(AccountNotDeletedException), HandleAccountNotDeletedException}
             };
         }
+
+       
 
         public override void OnException(ExceptionContext context)
         {
@@ -54,6 +58,24 @@ namespace Kata_Bank_Account.API.Filters
             };
 
             context.Result = new BadRequestObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private static void HandleAccountNotDeletedException(ExceptionContext context)
+        {
+            var exception = (AccountNotDeletedException)context.Exception;
+
+            var details = new ValidationProblemDetails
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Detail = exception.Message
+            };
+
+            context.Result = new ObjectResult(details)
+            {
+                StatusCode = 500
+            };
 
             context.ExceptionHandled = true;
         }

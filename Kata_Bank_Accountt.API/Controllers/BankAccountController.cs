@@ -1,4 +1,5 @@
 ﻿using Kata_Bank_Account.Application.BankAccountItems.Command.Create;
+using Kata_Bank_Account.Application.BankAccountItems.Command.Delete;
 using Kata_Bank_Account.Application.BankAccountItems.Dtos;
 using Kata_Bank_Account.Application.BankAccountItems.Query;
 using Kata_Bank_Account.Application.Common.Exceptions;
@@ -57,11 +58,15 @@ namespace Kata_Bank_Account.API.Controllers
         /// <param name="query"></param>
         /// <response code="200">Account balance retrieved successfully</response>
         /// <response code="400">Validation error. Account ID doesn't exist</response>
-        [HttpGet("/bank-account/bankAccountBalance")]
+        [HttpGet("/bank-account/bankAccountBalance/{Id}")]
         [ProducesResponseType(typeof(BankAccountDto), 200)]
         [ProducesResponseType(typeof(IDictionary<string, string[]>), 400)]
-        public async Task<BankAccountDto> GetBankAccountBalance([FromQuery] GetBankAccountBalanceQuery query)
+        public async Task<BankAccountDto> GetBankAccountBalance(Guid Id)
         {
+            GetBankAccountBalanceQuery query = new GetBankAccountBalanceQuery
+            {
+                BankAccountId = Id
+            };
             return await Mediator.Send(query);
         }
         /// <summary>
@@ -70,13 +75,39 @@ namespace Kata_Bank_Account.API.Controllers
         /// <param name="query"></param>
         /// <response code="200">Account transaction history retrieved successfully</response>
         /// <response code="400">Validation error. Account ID doesn't exist</response>
-        [HttpGet("/bank-account/transaction/transactionHistory")]
+        [HttpGet("/bank-account/transaction/transactionHistory/{Id}")]
         [ProducesResponseType(typeof(List<TransactionDto>), 200)]
         [ProducesResponseType(typeof(IDictionary<string, string[]>), 400)]
         public async Task<List<TransactionDto>> GetTransactionHistoryFromAccountId(
-            [FromQuery] GetTransactionHistoryQuery query)
+            Guid Id)
         {
+
+            GetTransactionHistoryQuery query = new GetTransactionHistoryQuery
+            {
+                AccountId = Id
+            };
+
             return await Mediator.Send(query);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        [HttpDelete("/bank-account/delete/{id}")]
+        [ProducesResponseType(typeof(Unit), 200)]
+        [ProducesResponseType(typeof(IDictionary<string, string[]>), 400)]
+        [ProducesResponseType(typeof(IDictionary<string, string>), 500)]
+        public async Task<Unit> DeleteBankAccountFromAccountId(Guid Id)
+        {
+            DeleteBankAccountCommand command = new DeleteBankAccountCommand
+            {
+                AccountId = Id
+            };
+
+            return await Mediator.Send(command);
+
         }
     }
 }

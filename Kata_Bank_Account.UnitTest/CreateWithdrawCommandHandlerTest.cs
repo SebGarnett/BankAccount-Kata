@@ -97,6 +97,6 @@ public class CreateWithdrawCommandHandlerTest
             Amount = amountWithdraw
         };
 
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _handlerWithdraw.Handle(requestWithdraw, default));
+        await Assert.ThrowsAsync<ValidationException>(() => _handlerWithdraw.Handle(requestWithdraw, default));
     }
 }

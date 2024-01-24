@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kata_Bank_Account.Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kata_Bank_Account.UnitTest", "Kata_Bank_Account.UnitTest\Kata_Bank_Account.UnitTest.csproj", "{C2A8D6C5-0C39-4C33-926A-7825B0333082}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kata_Bank_Account.IntegrationTests", "Kata_Bank_Account.IntegrationTests\Kata_Bank_Account.IntegrationTests.csproj", "{FA49F630-C18F-40C6-8A7A-81949ED5D68B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,18 @@ Global
 		{C2A8D6C5-0C39-4C33-926A-7825B0333082}.Release|ARM64.Build.0 = Release|Any CPU
 		{C2A8D6C5-0C39-4C33-926A-7825B0333082}.Release|x64.ActiveCfg = Release|x64
 		{C2A8D6C5-0C39-4C33-926A-7825B0333082}.Release|x64.Build.0 = Release|x64
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Debug|x64.Build.0 = Debug|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Release|ARM64.Build.0 = Release|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Release|x64.ActiveCfg = Release|Any CPU
+		{FA49F630-C18F-40C6-8A7A-81949ED5D68B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

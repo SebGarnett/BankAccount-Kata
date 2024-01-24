@@ -32,7 +32,7 @@ namespace Kata_Bank_Account.Application.WithdrawalItems.Command.Create
                 throw new Common.Exceptions.ValidationException($"Account ID {request.AccountId} does not exist !");
 
             if (account.Amount - request.Amount <= 0)
-                throw new InvalidOperationException(
+                throw new ValidationException(
                     "There are not enough funds in your account to complete this transaction ! ");
 
             account.Amount -= request.Amount;
